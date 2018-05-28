@@ -23,8 +23,8 @@ public class Main {
         for (int i = 0; i < CONSUMER_NUMBER; i++) {
             consumerService.execute(new SystemB(topic, i));
         }
-        consumerService.shutdown();
         System.out.println("Producer and Consumer has been started");
+        consumerService.shutdown();
     }
 }
 

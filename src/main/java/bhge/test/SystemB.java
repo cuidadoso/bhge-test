@@ -1,18 +1,17 @@
 package bhge.test;
 
 import bhge.test.model.Message;
-
-import java.util.concurrent.PriorityBlockingQueue;
+import bhge.test.util.TopicCollection;
 
 public class SystemB implements Runnable {
     private final static int COUNT_PER_SECOND = 1;
     private final static int PERIOD = 1000 / COUNT_PER_SECOND;
 
-    private PriorityBlockingQueue<Message> queue;
+    private TopicCollection topic;
     private int number;
 
-    public SystemB(PriorityBlockingQueue<Message> queue, int number) {
-        this.queue = queue;
+    public SystemB(TopicCollection topic, int number) {
+        this.topic = topic;
         this.number = number;
     }
 
@@ -21,7 +20,7 @@ public class SystemB implements Runnable {
             Message msg;
             System.out.printf("<--- SystemB-%d start receiving messages.%n%n", number);
             while(true){
-                msg = queue.take();
+                msg = topic.get();
                 Thread.sleep(PERIOD);
                 System.out.printf("SystemB-%d received message (%s) with priority %s.%n", number, msg.getText(), msg.getPriotity());
             }

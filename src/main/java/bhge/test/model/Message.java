@@ -1,6 +1,6 @@
 package bhge.test.model;
 
-public class Message implements Comparable<Message> {
+public class Message {
     private Priotity priotity;
     private String text;
 
@@ -15,9 +15,5 @@ public class Message implements Comparable<Message> {
 
     public String getText() {
         return text;
-    }
-
-    public int compareTo(Message o) {
-        return priotity.getValue().compareTo(o.getPriotity().getValue());
     }
 }
